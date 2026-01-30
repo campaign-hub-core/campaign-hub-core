@@ -1,0 +1,6 @@
+@CampaignHub.API_HostAddress = http://localhost:5239
+
+GET {{CampaignHub.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
