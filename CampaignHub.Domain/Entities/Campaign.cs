@@ -4,8 +4,8 @@ namespace CampaignHub.Domain.Entities;
 
 public class Campaign : Entity
 {
-    public string AdAccountId { get; set; }
-    public string Name { get; set; }
+    public required string AdAccountId { get; set; }
+    public required string Name { get; set; }
     public DateTime StartDate { get; set; }
     public DateTime EndDate { get; set; }
     public CampaignStatusEnum CampaignStatus { get; set; }

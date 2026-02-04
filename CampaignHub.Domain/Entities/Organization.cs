@@ -2,7 +2,7 @@
 
 public class Organization : Entity
 {
-    public string Name { get; set; }
+    public required string Name { get; set; }
     public bool Active { get; set; }
 
     protected Organization() { }

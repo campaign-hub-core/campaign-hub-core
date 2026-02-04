@@ -4,9 +4,9 @@ namespace CampaignHub.Domain.Entities
 {
     public class AdAccount : Entity
     {
-        public string ClientId{ get; set; }
+        public required string ClientId { get; set; }
         public decimal MonthlyBudget { get; set; }
-        public string Goal { get; set; }
+        public required string Goal { get; set; }
         public AdPlatformEnum AdPlatform { get; set; }
 
         protected AdAccount() { }

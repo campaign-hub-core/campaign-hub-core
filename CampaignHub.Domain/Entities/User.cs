@@ -2,18 +2,18 @@
 
 public class User : Entity
 {
-    public string Name { get; set; }
-    public string Email { get; set; }
-    public string Password { get; set; }
+    public required string Name { get; set; }
+    public required string Email { get; set; }
+    public required string PasswordHash { get; set; }
     public bool Active { get; set; }
 
     public User() {}
 
-    public User(string name, string email, string password)
+    public User(string name, string email, string passwordHash)
     {
         Name = name;
         Email = email;
-        Password = password;
+        PasswordHash = passwordHash;
         CreatedAt = DateTime.UtcNow;
         Active = true;
     }

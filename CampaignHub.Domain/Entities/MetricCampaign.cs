@@ -2,7 +2,7 @@
 
 public class MetricCampaign : Entity
 {
-    public string CampaingId { get; set; }
+    public required string CampaignId { get; set; }
     public DateTime ReferencePeriod { get; set; }
     public decimal Expenses { get; set; }
     public int Leads { get; set; }
@@ -10,9 +10,9 @@ public class MetricCampaign : Entity
     public string? Revenue { get; set; }
 
     protected MetricCampaign() { }
-    public MetricCampaign(string campaingId, DateTime referencePeriod, decimal expenses, int leads, string? sales, string? revenue)
+    public MetricCampaign(string campaignId, DateTime referencePeriod, decimal expenses, int leads, string? sales, string? revenue)
     {
-        CampaingId = campaingId;
+        CampaignId = campaignId;
         ReferencePeriod = NormalizePeriod(referencePeriod);
         Expenses = expenses;
         Leads = leads;
@@ -20,7 +20,7 @@ public class MetricCampaign : Entity
         Revenue = revenue;
     }
 
-    private void UpdateExpenses(decimal newExpenses)
+    public void UpdateExpenses(decimal newExpenses)
     {
         Expenses = newExpenses;
     }

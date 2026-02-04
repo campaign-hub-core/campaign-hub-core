@@ -4,16 +4,16 @@ namespace CampaignHub.Domain.Entities;
 
 public class Client : Entity
 {
-    public string User { get; set; }
-    public string Observation { get; set; }
+    public required string UserId { get; set; }
+    public string? Observation { get; set; }
     public ClientTypeEnum ClientType { get; set; }
     public ClientStatusEnum ClientStatus { get; set; }
 
     protected Client() { }
 
-    public Client(string user, string observation, ClientTypeEnum clientType)
+    public Client(string userId, string observation, ClientTypeEnum clientType)
     {
-        User = user;
+        UserId = userId;
         Observation = observation;
         ClientType = clientType;
         ClientStatus = ClientStatusEnum.Active;
