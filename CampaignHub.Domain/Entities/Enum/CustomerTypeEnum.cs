@@ -1,6 +1,6 @@
 ﻿namespace CampaignHub.Domain.Entities.Enum;
 
-public enum ClientTypeEnum
+public enum CustomerTypeEnum
 {
     Lead = 1,
     Ecommerce = 2,

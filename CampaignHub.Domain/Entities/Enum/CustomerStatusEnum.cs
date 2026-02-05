@@ -1,6 +1,6 @@
 ﻿namespace CampaignHub.Domain.Entities.Enum;
 
-public enum ClientStatusEnum
+public enum CustomerStatusEnum
 {
     Inactive,
     Active,

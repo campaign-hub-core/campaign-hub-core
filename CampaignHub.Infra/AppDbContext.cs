@@ -13,7 +13,7 @@ public class AppDbContext : DbContext
     public DbSet<MetricCampaign> MetricCampaigns { get; set; }
     public DbSet<Campaign> Campaigns { get; set; }
     public DbSet<AdAccount> AdAccounts { get; set; }
-    public DbSet<Client> Clients { get; set; }
+    public DbSet<Customer> Customers { get; set; }
     public DbSet<User> Users { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

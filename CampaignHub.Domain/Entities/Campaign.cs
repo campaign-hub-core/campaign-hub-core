@@ -10,6 +10,9 @@ public class Campaign : Entity
     public DateTime EndDate { get; set; }
     public CampaignStatusEnum CampaignStatus { get; set; }
 
+    private readonly List<MetricCampaign> _metrics = new();
+    public IReadOnlyCollection<MetricCampaign> Metrics => _metrics;
+
     protected Campaign() { }
 
     public Campaign(string adAccountId, string name, DateTime startDate, DateTime endDate)

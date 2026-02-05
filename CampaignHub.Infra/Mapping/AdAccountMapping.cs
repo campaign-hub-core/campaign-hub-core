@@ -10,7 +10,7 @@ public class AdAccountMapping : IEntityTypeConfiguration<AdAccount>
     {
         builder.HasKey(x => x.Id);
 
-        builder.Property(x => x.ClientId)
+        builder.Property(x => x.CustomerId)
             .IsRequired()
             .HasMaxLength(100);
 
@@ -24,5 +24,10 @@ public class AdAccountMapping : IEntityTypeConfiguration<AdAccount>
         builder.Property(x => x.AdPlatform)
             .IsRequired()
             .HasConversion<int>();
+
+        builder.HasMany(x => x.Campaigns)
+            .WithOne()
+            .HasForeignKey("AdAccountId")
+            .OnDelete(DeleteBehavior.Cascade);
     }
 }

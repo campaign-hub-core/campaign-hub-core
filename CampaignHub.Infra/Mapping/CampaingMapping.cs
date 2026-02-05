@@ -27,5 +27,10 @@ public class CampaignMapping : IEntityTypeConfiguration<Campaign>
         builder.Property(x => x.CampaignStatus)
             .IsRequired()
             .HasConversion<int>();
+
+        builder.HasMany(x => x.Metrics)
+            .WithOne()
+            .HasForeignKey("CampaignId")
+            .OnDelete(DeleteBehavior.Cascade);
     }
 }

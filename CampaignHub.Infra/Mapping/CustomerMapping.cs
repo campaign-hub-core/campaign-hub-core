@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace CampaignHub.Infras.Mappings;
 
-public class ClientMapping : IEntityTypeConfiguration<Client>
+public class CustomerMapping : IEntityTypeConfiguration<Customer>
 {
-    public void Configure(EntityTypeBuilder<Client> builder)
+    public void Configure(EntityTypeBuilder<Customer> builder)
     {
         builder.HasKey(x => x.Id);
 
@@ -17,12 +17,17 @@ public class ClientMapping : IEntityTypeConfiguration<Client>
         builder.Property(x => x.Observation)
             .HasMaxLength(1000);
 
-        builder.Property(x => x.ClientType)
+        builder.Property(x => x.CustomerType)
             .IsRequired()
             .HasConversion<int>();
 
-        builder.Property(x => x.ClientStatus)
+        builder.Property(x => x.CustomerStatus)
             .IsRequired()
             .HasConversion<int>();
+
+        builder.HasMany(x => x.AdAccounts)
+            .WithOne()
+            .HasForeignKey("CustomerId")
+            .OnDelete(DeleteBehavior.Cascade);
     }
 }

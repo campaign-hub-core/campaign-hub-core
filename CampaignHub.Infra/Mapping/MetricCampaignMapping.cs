@@ -29,5 +29,13 @@ public class MetricCampaignMapping : IEntityTypeConfiguration<MetricCampaign>
 
         builder.Property(x => x.Revenue)
             .HasMaxLength(100);
+
+        builder.HasIndex("CampaignId", nameof(MetricCampaign.ReferenceEquals))
+            .IsUnique();
+
+        builder.HasOne<Campaign>()
+            .WithMany(x => x.Metrics)
+            .HasForeignKey("CampaignId")
+            .OnDelete(DeleteBehavior.Cascade);
     }
 }
