@@ -2,12 +2,14 @@ using CampaignHub.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace CampaignHub.Infrastructure.Mappings;
+namespace CampaignHub.Infra.Mapping;
 
 public class MetricCampaignMapping : IEntityTypeConfiguration<MetricCampaign>
 {
     public void Configure(EntityTypeBuilder<MetricCampaign> builder)
     {
+        builder.ToTable("Metric");
+
         builder.HasKey(x => x.Id);
 
         builder.Property(x => x.CampaignId)
@@ -30,7 +32,7 @@ public class MetricCampaignMapping : IEntityTypeConfiguration<MetricCampaign>
         builder.Property(x => x.Revenue)
             .HasMaxLength(100);
 
-        builder.HasIndex("CampaignId", nameof(MetricCampaign.ReferenceEquals))
+        builder.HasIndex("CampaignId", nameof(MetricCampaign.ReferencePeriod))
             .IsUnique();
 
         builder.HasOne<Campaign>()

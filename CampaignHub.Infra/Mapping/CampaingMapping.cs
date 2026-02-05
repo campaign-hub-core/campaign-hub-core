@@ -8,6 +8,8 @@ public class CampaignMapping : IEntityTypeConfiguration<Campaign>
 {
     public void Configure(EntityTypeBuilder<Campaign> builder)
     {
+        builder.ToTable("Campaign");
+
         builder.HasKey(x => x.Id);
 
         builder.Property(x => x.AdAccountId)

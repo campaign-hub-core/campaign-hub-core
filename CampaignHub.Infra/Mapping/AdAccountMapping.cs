@@ -8,6 +8,8 @@ public class AdAccountMapping : IEntityTypeConfiguration<AdAccount>
 {
     public void Configure(EntityTypeBuilder<AdAccount> builder)
     {
+        builder.ToTable("AdAccount");
+  
         builder.HasKey(x => x.Id);
 
         builder.Property(x => x.CustomerId)

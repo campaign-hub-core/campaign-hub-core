@@ -1,11 +1,11 @@
-﻿using CampaignHub.Domain.Entities;
+using CampaignHub.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace CampaignHub.Infra;
 
 public class AppDbContext : DbContext
 {
-    protected AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
+    public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
     {
     }
 
@@ -19,7 +19,6 @@ public class AppDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
-
         base.OnModelCreating(modelBuilder);
     }
 }
