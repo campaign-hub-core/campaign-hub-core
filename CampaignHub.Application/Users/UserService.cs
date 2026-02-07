@@ -14,7 +14,7 @@ public class UserService : IUserService
         _unitOfWork = unitOfWork;
     }
 
-    public async Task<User> CreateAsync(CreateUserInput input, CancellationToken cancellationToken = default)
+    public async Task<UserResult> CreateAsync(CreateUserInput input, CancellationToken cancellationToken = default)
     {
         var emailNormalized = input.Email.Trim().ToLowerInvariant();
 
@@ -28,25 +28,26 @@ public class UserService : IUserService
         await _userRepository.AddAsync(user, cancellationToken);
         await _unitOfWork.SaveChangesAsync(cancellationToken);
 
-        return user;
+        return ToResult(user);
     }
 
-    public async Task<User?> GetByIdAsync(string id, CancellationToken cancellationToken = default)
+    public async Task<UserResult?> GetByIdAsync(string id, CancellationToken cancellationToken = default)
     {
         var user = await _userRepository.GetByIdAsync(id, cancellationToken);
 
         if (user is null || !user.Active)
             return null;
 
-        return user;
+        return ToResult(user);
     }
 
-    public async Task<IEnumerable<User>> GetByNameAsync(string name, CancellationToken cancellationToken = default)
+    public async Task<IEnumerable<UserResult>> GetByNameAsync(string name, CancellationToken cancellationToken = default)
     {
-        return await _userRepository.GetByNameAsync(name, cancellationToken);
+        var users = await _userRepository.GetByNameAsync(name, cancellationToken);
+        return users.Select(ToResult);
     }
 
-    public async Task<User?> UpdateAsync(string id, UpdateUserInput input, CancellationToken cancellationToken = default)
+    public async Task<UserResult?> UpdateAsync(string id, UpdateUserInput input, CancellationToken cancellationToken = default)
     {
         var user = await _userRepository.GetByIdAsync(id, cancellationToken);
 
@@ -56,7 +57,7 @@ public class UserService : IUserService
         user.Update(input.Name.Trim(), input.Email.Trim().ToLowerInvariant());
         await _unitOfWork.SaveChangesAsync(cancellationToken);
 
-        return user;
+        return ToResult(user);
     }
 
     public async Task<bool> DeleteAsync(string id, CancellationToken cancellationToken = default)
@@ -70,5 +71,16 @@ public class UserService : IUserService
         await _unitOfWork.SaveChangesAsync(cancellationToken);
 
         return true;
+    }
+
+    private static UserResult ToResult(User user)
+    {
+        return new UserResult(
+            user.Id,
+            user.Name,
+            user.Email,
+            user.Active,
+            user.CreatedAt
+        );
     }
 }
