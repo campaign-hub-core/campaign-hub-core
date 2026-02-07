@@ -18,8 +18,14 @@ public class User : Entity
         Active = true;
     }
 
+    public void Update(string name, string email)
+    {
+        Name = name;
+        Email = email;
+    }
+
     public void Disable()
     {
         Active = false;
-    }   
+    }
 }
