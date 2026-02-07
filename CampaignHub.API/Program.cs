@@ -1,29 +1,17 @@
+using CampaignHub.API.Extensions;
+using CampaignHub.Application;
+using CampaignHub.Domain;
 using CampaignHub.Infra;
-using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
-builder.Services.AddControllers();
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
-
-var connectionString = builder.Configuration.GetConnectionString("PostegreSqlConnection");
-builder.Services.AddDbContext<AppDbContext>(options => options.UseNpgsql(connectionString));
+builder.Services.AddDomain();
+builder.Services.AddInfra(builder.Configuration);
+builder.Services.AddApplication();
+builder.Services.AddCampaignHubApi();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.MapOpenApi();
-}
-
-app.UseHttpsRedirection();
-
-app.UseAuthorization();
-
-app.MapControllers();
+app.UseCampaignHubApiPipeline();
 
 app.Run();

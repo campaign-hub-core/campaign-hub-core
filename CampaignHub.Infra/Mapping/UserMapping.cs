@@ -26,5 +26,8 @@ public class UserMapping : IEntityTypeConfiguration<User>
 
         builder.Property(o => o.Active)
             .IsRequired();
+
+        builder.HasIndex(u => u.Email)
+            .IsUnique();
     }
 }
