@@ -1,4 +1,6 @@
-﻿namespace CampaignHub.Domain.Entities;
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace CampaignHub.Domain.Entities;
 
 public class Organization : Entity
 {
@@ -7,11 +9,17 @@ public class Organization : Entity
 
     protected Organization() { }
 
+    [SetsRequiredMembers]
     public Organization(string nome)
     {
         Name = nome;
         CreatedAt = DateTime.UtcNow;
         Active = true;
+    }
+
+    public void Update(string name)
+    {
+        Name = name;
     }
 
     public void Disable()
