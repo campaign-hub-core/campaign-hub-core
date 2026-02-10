@@ -1,9 +1,11 @@
-﻿using CampaignHub.Domain.Entities.Enum;
+﻿using System.Diagnostics.CodeAnalysis;
+using CampaignHub.Domain.Entities.Enum;
 
 namespace CampaignHub.Domain.Entities;
 
 public class Customer : Entity
 {
+    public required string Name { get; set; }
     public required string UserId { get; set; }
     public string? Observation { get; set; }
     public CustomerTypeEnum CustomerType { get; set; }
@@ -14,13 +16,21 @@ public class Customer : Entity
 
     protected Customer() { }
 
-    public Customer(string userId, string observation, CustomerTypeEnum customerType)
+    [SetsRequiredMembers]
+    public Customer(string name, string userId, string? observation, CustomerTypeEnum customerType)
     {
+        Name = name;
         UserId = userId;
         Observation = observation;
         CustomerType = customerType;
         CustomerStatus = CustomerStatusEnum.Active;
         CreatedAt = DateTime.UtcNow;
+    }
+
+    public void Update(string name, string? observation)
+    {
+        Name = name;
+        Observation = observation;
     }
 
     public void Enable()

@@ -12,6 +12,10 @@ public class CustomerMapping : IEntityTypeConfiguration<Customer>
 
         builder.HasKey(x => x.Id);
 
+        builder.Property(x => x.Name)
+            .IsRequired()
+            .HasMaxLength(200);
+
         builder.Property(x => x.UserId)
             .IsRequired()
             .HasMaxLength(100);

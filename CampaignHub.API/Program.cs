@@ -8,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDomain();
 builder.Services.AddInfra(builder.Configuration);
 builder.Services.AddApplication();
-builder.Services.AddCampaignHubApi();
+builder.Services.AddCampaignHubApi(builder.Configuration);
 
 var app = builder.Build();
 

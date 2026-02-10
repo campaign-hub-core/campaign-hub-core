@@ -1,4 +1,5 @@
-﻿using CampaignHub.Domain.Entities.Enum;
+﻿using System.Diagnostics.CodeAnalysis;
+using CampaignHub.Domain.Entities.Enum;
 
 namespace CampaignHub.Domain.Entities
 {
@@ -14,12 +15,19 @@ namespace CampaignHub.Domain.Entities
 
         protected AdAccount() { }
 
+        [SetsRequiredMembers]
         public AdAccount(string customerId, decimal monthlyBudget, string goal, AdPlatformEnum adPlatform)
         {
             CustomerId = customerId;
             MonthlyBudget = monthlyBudget;
             Goal = goal;
             AdPlatform = adPlatform;
+        }
+
+        public void Update(decimal monthlyBudget, string goal)
+        {
+            MonthlyBudget = monthlyBudget;
+            Goal = goal;
         }
 
         public void UpdateMonthlyBudget(decimal newBudget)

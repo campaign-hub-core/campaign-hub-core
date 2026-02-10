@@ -1,4 +1,5 @@
-﻿using CampaignHub.Domain.Entities.Enum;
+﻿using System.Diagnostics.CodeAnalysis;
+using CampaignHub.Domain.Entities.Enum;
 
 namespace CampaignHub.Domain.Entities;
 
@@ -15,6 +16,7 @@ public class Campaign : Entity
 
     protected Campaign() { }
 
+    [SetsRequiredMembers]
     public Campaign(string adAccountId, string name, DateTime startDate, DateTime endDate)
     {
         AdAccountId = adAccountId;
@@ -22,6 +24,13 @@ public class Campaign : Entity
         StartDate = startDate;
         EndDate = endDate;
         CampaignStatus = CampaignStatusEnum.Active;
+    }
+
+    public void Update(string name, DateTime startDate, DateTime endDate)
+    {
+        Name = name;
+        StartDate = startDate;
+        EndDate = endDate;
     }
 
     public void Pause()
@@ -33,6 +42,7 @@ public class Campaign : Entity
     {
         CampaignStatus = CampaignStatusEnum.Active;
     }
+
     public void Complete()
     {
         CampaignStatus = CampaignStatusEnum.Completed;

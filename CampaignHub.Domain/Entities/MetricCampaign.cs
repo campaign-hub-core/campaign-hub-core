@@ -1,4 +1,6 @@
-﻿namespace CampaignHub.Domain.Entities;
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace CampaignHub.Domain.Entities;
 
 public class MetricCampaign : Entity
 {
@@ -10,10 +12,20 @@ public class MetricCampaign : Entity
     public string? Revenue { get; set; }
 
     protected MetricCampaign() { }
+
+    [SetsRequiredMembers]
     public MetricCampaign(string campaignId, DateTime referencePeriod, decimal expenses, int leads, string? sales, string? revenue)
     {
         CampaignId = campaignId;
         ReferencePeriod = NormalizePeriod(referencePeriod);
+        Expenses = expenses;
+        Leads = leads;
+        Sales = sales;
+        Revenue = revenue;
+    }
+
+    public void Update(decimal expenses, int leads, string? sales, string? revenue)
+    {
         Expenses = expenses;
         Leads = leads;
         Sales = sales;
@@ -26,7 +38,7 @@ public class MetricCampaign : Entity
     }
 
     private static DateTime NormalizePeriod(DateTime date)
-    { 
+    {
         return new DateTime(date.Year, date.Month, 1);
     }
 }
