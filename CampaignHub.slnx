@@ -5,5 +5,8 @@
     <Project Path="CampaignHub.Domain/CampaignHub.Domain.csproj" Id="b3622c18-45e1-4c65-bda3-a7f188f0c146" />
     <Project Path="CampaignHub.Infra/CampaignHub.Infra.csproj" Id="7ac9c09b-daa0-49af-a21e-08ba33a1940f" />
   </Folder>
-  <Folder Name="/tests/" />
+  <Folder Name="/tests/">
+    <Project Path="CampaignHub.Domain.Tests/CampaignHub.Domain.Tests.csproj" />
+    <Project Path="CampaignHub.Application.Tests/CampaignHub.Application.Tests.csproj" />
+  </Folder>
 </Solution>

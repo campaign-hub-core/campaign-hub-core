@@ -2,7 +2,13 @@
   "permissions": {
     "allow": [
       "Bash(find:*)",
-      "Bash(dotnet build:*)"
+      "Bash(dotnet build:*)",
+      "Bash(dir \"C:\\\\Users\\\\gabri\\\\source\\\\repos\\\\CampaignHub\\\\CampaignHub.Domain\" /s /b)",
+      "Bash(dotnet new:*)",
+      "Bash(dotnet add:*)",
+      "Bash(del \"C:\\\\Users\\\\gabri\\\\source\\\\repos\\\\CampaignHub\\\\CampaignHub.Domain.Tests\\\\UnitTest1.cs\")",
+      "Bash(del \"C:\\\\Users\\\\gabri\\\\source\\\\repos\\\\CampaignHub\\\\CampaignHub.Application.Tests\\\\UnitTest1.cs\")",
+      "Bash(dotnet test:*)"
     ],
     "deny": [],
     "ask": []
