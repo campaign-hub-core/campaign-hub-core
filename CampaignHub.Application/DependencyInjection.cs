@@ -4,6 +4,7 @@ using CampaignHub.Application.Campaigns;
 using CampaignHub.Application.Customers;
 using CampaignHub.Application.Metrics;
 using CampaignHub.Application.Organizations;
+using CampaignHub.Application.Services;
 using CampaignHub.Application.Users;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -23,6 +24,7 @@ public static class DependencyInjection
         services.AddScoped<ICampaignService, CampaignService>();
         services.AddScoped<IMetricService, MetricService>();
         services.AddScoped<IAuthService, AuthService>();
+        services.AddScoped<MetaAdsSyncService>();
 
         return services;
     }
