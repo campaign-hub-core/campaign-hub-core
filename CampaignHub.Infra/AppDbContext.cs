@@ -15,6 +15,8 @@ public class AppDbContext : DbContext
     public DbSet<AdAccount> AdAccounts { get; set; }
     public DbSet<Customer> Customers { get; set; }
     public DbSet<User> Users { get; set; }
+    public DbSet<AdSet> AdSets { get; set; }
+    public DbSet<Ad> Ads { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

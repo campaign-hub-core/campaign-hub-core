@@ -30,7 +30,19 @@ public class CampaignMapping : IEntityTypeConfiguration<Campaign>
             .IsRequired()
             .HasConversion<int>();
 
+        builder.Property(x => x.ExternalId)
+            .HasMaxLength(100);
+
+        builder.HasIndex(x => x.ExternalId)
+            .IsUnique()
+            .HasFilter("\"ExternalId\" IS NOT NULL");
+
         builder.HasMany(x => x.Metrics)
+            .WithOne()
+            .HasForeignKey("CampaignId")
+            .OnDelete(DeleteBehavior.Cascade);
+
+        builder.HasMany(x => x.AdSets)
             .WithOne()
             .HasForeignKey("CampaignId")
             .OnDelete(DeleteBehavior.Cascade);

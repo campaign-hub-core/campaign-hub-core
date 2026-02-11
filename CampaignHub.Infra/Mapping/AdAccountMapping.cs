@@ -27,6 +27,13 @@ public class AdAccountMapping : IEntityTypeConfiguration<AdAccount>
             .IsRequired()
             .HasConversion<int>();
 
+        builder.Property(x => x.ExternalId)
+            .HasMaxLength(100);
+
+        builder.HasIndex(x => x.ExternalId)
+            .IsUnique()
+            .HasFilter("\"ExternalId\" IS NOT NULL");
+
         builder.HasMany(x => x.Campaigns)
             .WithOne()
             .HasForeignKey("AdAccountId")
