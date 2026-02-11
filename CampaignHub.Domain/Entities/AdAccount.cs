@@ -9,6 +9,8 @@ namespace CampaignHub.Domain.Entities
         public decimal MonthlyBudget { get; set; }
         public required string Goal { get; set; }
         public AdPlatformEnum AdPlatform { get; set; }
+        public string? ExternalId { get; set; }
+        public DateTime? LastSyncedAt { get; set; }
 
         private readonly List<Campaign> _campaigns = new();
         public IReadOnlyCollection<Campaign> Campaigns => _campaigns;
@@ -33,6 +35,16 @@ namespace CampaignHub.Domain.Entities
         public void UpdateMonthlyBudget(decimal newBudget)
         {
             MonthlyBudget = newBudget;
+        }
+
+        public void SetExternalId(string externalId)
+        {
+            ExternalId = externalId;
+        }
+
+        public void MarkSynced()
+        {
+            LastSyncedAt = DateTime.UtcNow;
         }
     }
 }

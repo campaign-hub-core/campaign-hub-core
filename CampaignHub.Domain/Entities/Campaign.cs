@@ -10,9 +10,13 @@ public class Campaign : Entity
     public DateTime StartDate { get; set; }
     public DateTime EndDate { get; set; }
     public CampaignStatusEnum CampaignStatus { get; set; }
+    public string? ExternalId { get; set; }
 
     private readonly List<MetricCampaign> _metrics = new();
     public IReadOnlyCollection<MetricCampaign> Metrics => _metrics;
+
+    private readonly List<AdSet> _adSets = new();
+    public IReadOnlyCollection<AdSet> AdSets => _adSets;
 
     protected Campaign() { }
 
@@ -46,5 +50,10 @@ public class Campaign : Entity
     public void Complete()
     {
         CampaignStatus = CampaignStatusEnum.Completed;
+    }
+
+    public void SetExternalId(string externalId)
+    {
+        ExternalId = externalId;
     }
 }
