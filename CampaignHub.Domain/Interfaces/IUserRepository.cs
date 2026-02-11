@@ -1,6 +1,6 @@
 using CampaignHub.Domain.Entities;
 
-namespace CampaignHub.Infra.Repositories;
+namespace CampaignHub.Domain.Interfaces;
 
 public interface IUserRepository
 {

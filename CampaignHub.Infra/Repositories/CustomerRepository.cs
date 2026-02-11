@@ -1,5 +1,6 @@
 using CampaignHub.Domain.Entities;
 using CampaignHub.Domain.Entities.Enum;
+using CampaignHub.Domain.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace CampaignHub.Infra.Repositories;

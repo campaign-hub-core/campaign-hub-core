@@ -1,5 +1,5 @@
 using CampaignHub.Domain.Entities;
-using CampaignHub.Infra.Repositories;
+using CampaignHub.Domain.Interfaces;
 
 namespace CampaignHub.Application.Users;
 

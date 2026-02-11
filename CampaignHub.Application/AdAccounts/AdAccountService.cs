@@ -1,6 +1,6 @@
 using CampaignHub.Domain.Entities;
 using CampaignHub.Domain.Entities.Enum;
-using CampaignHub.Infra.Repositories;
+using CampaignHub.Domain.Interfaces;
 
 namespace CampaignHub.Application.AdAccounts;
 

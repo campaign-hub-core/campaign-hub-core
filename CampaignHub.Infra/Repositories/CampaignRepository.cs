@@ -1,5 +1,6 @@
 using CampaignHub.Domain.Entities;
 using CampaignHub.Domain.Entities.Enum;
+using CampaignHub.Domain.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace CampaignHub.Infra.Repositories;
@@ -15,6 +16,10 @@ public class CampaignRepository : ICampaignRepository
 
     public async Task<Campaign?> GetByIdAsync(string id, CancellationToken cancellationToken = default) =>
         await _context.Campaigns.FindAsync([id], cancellationToken);
+
+    public async Task<Campaign?> GetByExternalIdAsync(string externalId, CancellationToken cancellationToken = default) =>
+        await _context.Campaigns
+            .FirstOrDefaultAsync(c => c.ExternalId == externalId, cancellationToken);
 
     public async Task<IEnumerable<Campaign>> GetByNameAsync(string name, CancellationToken cancellationToken = default) =>
         await _context.Campaigns
@@ -32,6 +37,11 @@ public class CampaignRepository : ICampaignRepository
     {
         await _context.Campaigns.AddAsync(campaign, cancellationToken);
         return campaign;
+    }
+
+    public void Update(Campaign campaign)
+    {
+        _context.Campaigns.Update(campaign);
     }
 
     public void Remove(Campaign campaign)

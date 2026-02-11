@@ -1,15 +1,15 @@
 using CampaignHub.Domain.Entities;
-using CampaignHub.Infra.Repositories;
+using CampaignHub.Domain.Interfaces;
 
 namespace CampaignHub.Application.Metrics;
 
 public class MetricService : IMetricService
 {
-    private readonly IMetricRepository _metricRepository;
+    private readonly IMetricCampaignRepository _metricRepository;
     private readonly ICampaignRepository _campaignRepository;
     private readonly IUnitOfWork _unitOfWork;
 
-    public MetricService(IMetricRepository metricRepository, ICampaignRepository campaignRepository, IUnitOfWork unitOfWork)
+    public MetricService(IMetricCampaignRepository metricRepository, ICampaignRepository campaignRepository, IUnitOfWork unitOfWork)
     {
         _metricRepository = metricRepository;
         _campaignRepository = campaignRepository;

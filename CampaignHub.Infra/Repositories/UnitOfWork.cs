@@ -1,4 +1,4 @@
-using Microsoft.EntityFrameworkCore;
+using CampaignHub.Domain.Interfaces;
 
 namespace CampaignHub.Infra.Repositories;
 

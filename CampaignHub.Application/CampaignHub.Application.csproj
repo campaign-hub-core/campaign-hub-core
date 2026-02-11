@@ -15,7 +15,6 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CampaignHub.Domain\CampaignHub.Domain.csproj" />
-    <ProjectReference Include="..\CampaignHub.Infra\CampaignHub.Infra.csproj" />
   </ItemGroup>
 
 </Project>
